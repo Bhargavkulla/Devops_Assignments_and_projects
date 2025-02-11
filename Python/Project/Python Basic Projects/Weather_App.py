@@ -1,14 +1,18 @@
 import requests
 
-API_KEY = "your_api_key"  # Get from https://openweathermap.org/api
+API_KEY = "8f2d6822fb2e4524adf20f8132e6f463"
 city = input("Enter city name: ")
+ 
+# Construct the API URL
 url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric"
-
+ 
+# Fetch the weather data
 response = requests.get(url).json()
-
+ 
+# Check if the response is valid
 if response["cod"] == 200:
-    print(f"City: {response['name']}")
+    print(f"\nCity: {response['name']}")
     print(f"Temperature: {response['main']['temp']}°C")
     print(f"Weather: {response['weather'][0]['description']}")
 else:
-    print("City not found!")
+    print("\nCity not found!")
